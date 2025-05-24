@@ -29,14 +29,25 @@ function render(variables = {}) {
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
+  // Combine name and lastName with conditionals
+  let displayName = `${variables.name ? variables.name : "First name"} ${
+    variables.lastName ? variables.lastName : "last name"
+  }`;
+
+  let role = variables.role ? variables.role : "Please select Role ";
+
+  let location = `${variables.city ? variables.city : "select city "} ${
+    variables.country ? variables.country : "select country"
+  }`;
+
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
+          <h1>${displayName}</h1>
+          <h2>${role}</h2>
+          <h3>${location}</h3>
+          <ul class="${variables.socialMediaPosition}">
             <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
             <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a></li>
             <li><a href="https://linkedin.com/school/4geeksacademy"><i class="fab fa-linkedin"></i></a></li>
